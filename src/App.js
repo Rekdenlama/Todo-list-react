@@ -56,6 +56,11 @@ function App() {
     addItem(newItem);
     setNewItem('');
   };
+  function searchItems(query) {
+    return items.filter((item) =>
+      item.item.toLowerCase().includes(query.toLowerCase())
+    );
+  }
   return (
     <div className="App">
       <Header title="Grocery List" />
@@ -66,9 +71,9 @@ function App() {
         }}
         handleSubmit={handleSubmit}
       />
-      <SearchItem search={search} setSearch={setSearch} />
+      <SearchItem search={search} setSearch={(value) => setSearch(value)} />
       <Content
-        items={items}
+        items={searchItems(search)}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
       />
